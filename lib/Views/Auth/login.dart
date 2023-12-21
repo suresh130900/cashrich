@@ -19,6 +19,10 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   TextEditingController passwordController = TextEditingController();
   TextEditingController cPasswordController = TextEditingController();
 
+  //Firebase Auth with google
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  User? _user;
 
   void createAccount() async {
     String email = emailController.text.trim();
@@ -43,12 +47,31 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     }
   }
 
+
+  //Signup with Google
+  void _handleGoogleSignIn() {
+    try{
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      _auth.signInWithProvider(googleAuthProvider).then((UserCredential userCredential) {
+        Get.offAll(Home());
+      });
+    } catch(error){
+      print(error);
+    }
+  }
+
+
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    _auth.authStateChanges().listen((event) {
+      setState(() {
+        _user = event;
+      });
+    });
   }
 
   @override
@@ -230,6 +253,40 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       Get.to(() => SignUp());
                     },
                     child: Text("Already have an Account"),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      _handleGoogleSignIn();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white, // Background color
+                      onPrimary: Colors.black, // Text color
+                      padding: EdgeInsets.all(16.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/google_logo.png', // Add your Google logo image asset
+                          height: MediaQuery.of(context).size.height/20,
+                          width: MediaQuery.of(context).size.width/4,
+                        ),
+                        SizedBox(width: 16.0),
+                        Text(
+                          'Sign In with Google',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

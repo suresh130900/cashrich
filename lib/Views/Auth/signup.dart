@@ -21,6 +21,10 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  User? _user;
+
   void login() async{
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
@@ -38,6 +42,19 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
       }on FirebaseAuthException catch(ex) {
         Get.snackbar("Error", ex.code.toString());
       }
+    }
+  }
+
+
+  //Signup with Google
+  void _handleGoogleSignIn() {
+    try{
+      GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
+      _auth.signInWithProvider(googleAuthProvider).then((UserCredential userCredential) {
+        Get.offAll(Home());
+      });
+    } catch(error){
+      print(error);
     }
   }
 
@@ -206,6 +223,40 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       Get.to(() => Login());
                     },
                     child: Text("Create an Account"),
+                  ),
+                  Divider(
+                    height: 10,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      _handleGoogleSignIn();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white, // Background color
+                      onPrimary: Colors.black, // Text color
+                      padding: EdgeInsets.all(16.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/google_logo.png', // Add your Google logo image asset
+                          height: MediaQuery.of(context).size.height/20,
+                          width: MediaQuery.of(context).size.width/4,
+                        ),
+                        SizedBox(width: 16.0),
+                        Text(
+                          'Sign In with Google',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
