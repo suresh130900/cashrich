@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603033200568",
+    "project_id": "cashrich-26755",
+    "storage_bucket": "cashrich-26755.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603033200568:android:6b46c45b25984f0b93514d",
+        "android_client_info": {
+          "package_name": "tech.sctechnologies.cash_rich"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcst7uWtNOnmEnzPiwM-tcfD1InJiqGk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
