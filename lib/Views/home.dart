@@ -1,11 +1,15 @@
-import 'dart:math';
 
 import 'package:cash_rich/Services/coinData.dart';
 import 'package:cash_rich/Views/Auth/signup.dart';
+import 'package:cash_rich/Views/homeInner.dart';
+import 'package:cash_rich/Views/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../Model/coins.dart';
+import '../Services/coin_serach.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,12 +21,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   CoinData coins = Get.put(CoinData());
 
+  //Searching the data
+  CoinSearch coinSearch = CoinSearch();
+
   int index = 0;
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
     Get.off(SignUp());
   }
+
   late AnimationController _controller;
 
   @override
@@ -76,7 +84,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           BottomNavigationBarItem(
             backgroundColor: Colors.blueAccent,
             icon: Icon(
-              Icons.analytics,
+              Icons.search,
             ),
             label: "Analysis",
           ),
@@ -96,46 +104,123 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               label: "Settings"),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Obx(
-                  () => ListView(
-                    children: List.generate(
-                      coins.naming.length,
-                      (index) => Card(
-                        elevation: 4.0,
-                        margin: EdgeInsets.symmetric(vertical: 8.0),
-                        child: ListTile(
-                          title: Text(
-                            coins.naming[index],
-                            style: TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Symbol: ${coins.symboling[index]}'),
-                              Text('Price: \$${coins.pricing[index]}'),
-                              Text(
-                                  'Percentage Change: ${coins.percentagesChanging[index]}%'),
-                              Text('Rank: ${coins.ranking[index]}'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+      body: IndexedStack(
+        index: index,
+        children: [
+          HomeInner(),
+          Center(
+            child: Search(),
+          )
+        ],
       ),
+      // body: SingleChildScrollView(
+      //   child: Column(
+      //     children: [
+      //       ElevatedButton(onPressed: (){
+      //         Get.to(HomeInner());
+      //       }, child: Text("testing")),
+      //       TextField(
+      //         onChanged: (query) {
+      //           coinSearch.searchCoins(query);
+      //         },
+      //         decoration: InputDecoration(
+      //           labelText: 'Search Coins',
+      //           hintText: 'Enter coin name or symbol',
+      //         ),
+      //       ),
+      //       // Obx(() {
+      //       //   if (coinSearch.searchResults.isNotEmpty) {
+      //       //     print("-----------------------------------------------------------------");
+      //       //     print(coinSearch.searchResults);
+      //       //     return ListView.builder(
+      //       //       itemCount: coinSearch.searchResults.length,
+      //       //       itemBuilder: (context, index) {
+      //       //         Data coin = coinSearch.searchResults[index];
+      //       //         return ListTile(
+      //       //           title: Text(coin.name ?? ''),
+      //       //           subtitle: Text(coin.symbol ?? ''),
+      //       //           // Add more information as needed
+      //       //         );
+      //       //       },
+      //       //     );
+      //       //   } else {
+      //       //     print("Else Part only");
+      //       //     return Text('No results found');
+      //       //   }
+      //       // }),
+      //
+      //       Container(
+      //         height: MediaQuery.of(context).size.height,
+      //         child: Obx(
+      //           () => ListView.builder(
+      //             itemCount: coinSearch.searchResults.length,
+      //             shrinkWrap: true,
+      //             itemBuilder: (BuildContext context, int index) {
+      //               Data coin = coinSearch.searchResults[index];
+      //               return Padding(
+      //                 padding: const EdgeInsets.all(16.0),
+      //                 child: Card(
+      //                   child: ListTile(
+      //                     title: Text(
+      //                       coin.name ?? '',
+      //                       style: TextStyle(
+      //                           fontSize: 24, fontWeight: FontWeight.bold),
+      //                     ),
+      //                     subtitle: Column(
+      //                       crossAxisAlignment: CrossAxisAlignment.start,
+      //                       children: [
+      //                         Text('Symbol: ${coin.symbol ?? ''}'),
+      //                         Text('Price: \$${coins.pricing[index]}'),
+      //                         Text(
+      //                             'Percentage Change: ${coins.percentagesChanging[index]}%'),
+      //                         Text('Rank: ${coins.ranking[index]}'),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                 ),
+      //               );
+      //             },
+      //           ),
+      //         ),
+      //       ),
+      //
+      //       // Container(
+      //       //   height: MediaQuery.of(context).size.height,
+      //       //   child: Padding(
+      //       //     padding: const EdgeInsets.all(16.0),
+      //       //     child: Obx(
+      //       //       () => ListView(
+      //       //         children: List.generate(
+      //       //           coins.naming.length,
+      //       //           (index) => Card(
+      //       //             elevation: 4.0,
+      //       //             margin: EdgeInsets.symmetric(vertical: 8.0),
+      //       //             child: ListTile(
+      //       //               title: Text(
+      //       //                 coins.naming[index],
+      //       //                 style: TextStyle(
+      //       //                     fontSize: 24, fontWeight: FontWeight.bold),
+      //       //               ),
+      //       //               subtitle: Column(
+      //       //                 crossAxisAlignment: CrossAxisAlignment.start,
+      //       //                 children: [
+      //       //                   Text('Symbol: ${coins.symboling[index]}'),
+      //       //                   Text('Price: \$${coins.pricing[index]}'),
+      //       //                   Text(
+      //       //                       'Percentage Change: ${coins.percentagesChanging[index]}%'),
+      //       //                   Text('Rank: ${coins.ranking[index]}'),
+      //       //                 ],
+      //       //               ),
+      //       //             ),
+      //       //           ),
+      //       //         ),
+      //       //       ),
+      //       //     ),
+      //       //   ),
+      //       // ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
