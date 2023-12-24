@@ -1,9 +1,8 @@
-import 'package:cash_rich/Model/coins.dart';
+
 import 'package:cash_rich/Services/coinData.dart';
 import 'package:cash_rich/Services/coin_serach.dart';
 import 'package:cash_rich/Views/Auth/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +13,8 @@ class HomeInner extends StatefulWidget {
   State<HomeInner> createState() => _HomeInnerState();
 }
 
-class _HomeInnerState extends State<HomeInner> with SingleTickerProviderStateMixin {
+class _HomeInnerState extends State<HomeInner>
+    with SingleTickerProviderStateMixin {
   CoinData coins = Get.put(CoinData());
 
   //Searching the data
@@ -62,7 +62,7 @@ class _HomeInnerState extends State<HomeInner> with SingleTickerProviderStateMix
                         child: ListTile(
                           title: Text(
                             coins.naming[index],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                           subtitle: Column(

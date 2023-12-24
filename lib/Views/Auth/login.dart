@@ -40,6 +40,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         Get.snackbar("Sucess", "User Registered Sucessfully",backgroundColor: Colors.white);
         if(userCredential.user != null){
           Get.off(Home());
+          //Sip calculator
         }
       }on FirebaseAuthException catch(ex){
         Get.snackbar("Exception", ex.code.toString(),backgroundColor: Colors.white);
