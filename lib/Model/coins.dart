@@ -1,4 +1,3 @@
-
 class Coing {
   Status? status;
   List<Data>? data;
@@ -7,7 +6,7 @@ class Coing {
 
   Coing.fromJson(Map<String, dynamic> json) {
     status =
-    json['status'] != null ? new Status.fromJson(json['status']) : null;
+        json['status'] != null ? new Status.fromJson(json['status']) : null;
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -26,6 +25,7 @@ class Coing {
     }
     return data;
   }
+
   @override
   String toString() {
     return 'Coing(status: $status, data: $data)';
@@ -35,20 +35,20 @@ class Coing {
 class Status {
   String? timestamp;
   int? errorCode;
-  Null? errorMessage;
+  Null errorMessage;
   int? elapsed;
   int? creditCount;
-  Null? notice;
+  dynamic notice;
   int? totalCount;
 
   Status(
       {this.timestamp,
-        this.errorCode,
-        this.errorMessage,
-        this.elapsed,
-        this.creditCount,
-        this.notice,
-        this.totalCount});
+      this.errorCode,
+      this.errorMessage,
+      this.elapsed,
+      this.creditCount,
+      this.notice,
+      this.totalCount});
 
   Status.fromJson(Map<String, dynamic> json) {
     timestamp = json['timestamp'];
@@ -95,23 +95,23 @@ class Data {
 
   Data(
       {this.id,
-        this.name,
-        this.symbol,
-        this.slug,
-        this.numMarketPairs,
-        this.dateAdded,
-        this.tags,
-        this.maxSupply,
-        this.circulatingSupply,
-        this.totalSupply,
-        this.infiniteSupply,
-        this.platform,
-        this.cmcRank,
-        this.selfReportedCirculatingSupply,
-        this.selfReportedMarketCap,
-        this.tvlRatio,
-        this.lastUpdated,
-        this.quote});
+      this.name,
+      this.symbol,
+      this.slug,
+      this.numMarketPairs,
+      this.dateAdded,
+      this.tags,
+      this.maxSupply,
+      this.circulatingSupply,
+      this.totalSupply,
+      this.infiniteSupply,
+      this.platform,
+      this.cmcRank,
+      this.selfReportedCirculatingSupply,
+      this.selfReportedMarketCap,
+      this.tvlRatio,
+      this.lastUpdated,
+      this.quote});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -182,6 +182,7 @@ class Quote {
     }
     return data;
   }
+
   @override
   String toString() {
     return 'Quote(uSD: $uSD)';
@@ -206,19 +207,19 @@ class USD {
 
   USD(
       {this.price,
-        this.volume24h,
-        this.volumeChange24h,
-        this.percentChange1h,
-        this.percentChange24h,
-        this.percentChange7d,
-        this.percentChange30d,
-        this.percentChange60d,
-        this.percentChange90d,
-        this.marketCap,
-        this.marketCapDominance,
-        this.fullyDilutedMarketCap,
-        this.tvl,
-        this.lastUpdated});
+      this.volume24h,
+      this.volumeChange24h,
+      this.percentChange1h,
+      this.percentChange24h,
+      this.percentChange7d,
+      this.percentChange30d,
+      this.percentChange60d,
+      this.percentChange90d,
+      this.marketCap,
+      this.marketCapDominance,
+      this.fullyDilutedMarketCap,
+      this.tvl,
+      this.lastUpdated});
 
   USD.fromJson(Map<String, dynamic> json) {
     price = json['price'];
@@ -255,6 +256,7 @@ class USD {
     data['last_updated'] = this.lastUpdated;
     return data;
   }
+
   @override
   String toString() {
     return 'USD(price: $price, percentChange24h: $percentChange24h)';

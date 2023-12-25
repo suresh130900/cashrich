@@ -1,5 +1,3 @@
-
-
 import 'package:cash_rich/Views/Auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,47 +14,48 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
-
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  User? _user;
+  //User? _user;
 
-  void login() async{
+  void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
-    if(email == "" || password == ""){
-      Get.snackbar("required", "Please fill all the Fields",backgroundColor: Colors.white);
-    }
-    else{
-      try{
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-        Get.snackbar("Sucess", "Login SucessFull",backgroundColor: Colors.white);
-        if(userCredential != null){
+    if (email == "" || password == "") {
+      Get.snackbar("required", "Please fill all the Fields",
+          backgroundColor: Colors.white);
+    } else {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        Get.snackbar("Sucess", "Login SucessFull",
+            backgroundColor: Colors.white);
+        if (userCredential != null) {
           Get.off(Home());
         }
-      }on FirebaseAuthException catch(ex) {
+      } on FirebaseAuthException catch (ex) {
         Get.snackbar("Error", ex.code.toString());
       }
     }
   }
 
-
   //Signup with Google
   void _handleGoogleSignIn() {
-    try{
+    try {
       GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
-      _auth.signInWithProvider(googleAuthProvider).then((UserCredential userCredential) {
+      _auth
+          .signInWithProvider(googleAuthProvider)
+          .then((UserCredential userCredential) {
         Get.offAll(Home());
       });
-    } catch(error){
+    } catch (error) {
       print(error);
     }
   }
-
 
   late AnimationController _controller;
 
@@ -107,7 +106,6 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-
                   SizedBox(
                     height: 20,
                   ),
@@ -121,7 +119,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                   SizedBox(
                     height: 10,
                   ),
-                   TextField(
+                  TextField(
                     controller: emailController,
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
@@ -143,7 +141,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                   SizedBox(
                     height: 10,
                   ),
-                   TextField(
+                  TextField(
                     controller: passwordController,
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
@@ -168,24 +166,24 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         ),
                         elevation: MaterialStateProperty.all<double>(5),
                         backgroundColor:
-                        MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
                             return states.contains(MaterialState.pressed)
                                 ? Theme.of(context)
-                                .primaryColor
-                                .withOpacity(0.5)
+                                    .primaryColor
+                                    .withOpacity(0.5)
                                 : Colors
-                                .transparent; // Set to null to allow the gradient to take effect
+                                    .transparent; // Set to null to allow the gradient to take effect
                           },
                         ),
                         foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
+                            MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
+                          (Set<MaterialState> states) {
                             return states.contains(MaterialState.pressed)
                                 ? Theme.of(context)
-                                .primaryColor
-                                .withOpacity(0.5)
+                                    .primaryColor
+                                    .withOpacity(0.5)
                                 : Colors.transparent;
                           },
                         ),
@@ -246,8 +244,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       children: [
                         Image.asset(
                           'assets/google_logo.png', // Add your Google logo image asset
-                          height: MediaQuery.of(context).size.height/20,
-                          width: MediaQuery.of(context).size.width/4,
+                          height: MediaQuery.of(context).size.height / 20,
+                          width: MediaQuery.of(context).size.width / 4,
                         ),
                         SizedBox(width: 16.0),
                         Text(
