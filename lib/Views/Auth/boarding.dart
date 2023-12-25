@@ -1,5 +1,4 @@
 import 'package:cash_rich/Views/Auth/login.dart';
-import 'package:cash_rich/Views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

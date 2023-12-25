@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 class Coing {
   Status? status;
