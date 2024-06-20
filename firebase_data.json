@@ -1,0 +1,180 @@
+{
+    "-O-eXhI79t0-3mBVUnEl": {
+      "createdBy": 150,
+      "createdDate": 1718700659181,
+      "createdFrom": 71,
+      "customerId": 104062,
+      "status": 11,
+      "triggerData": {
+        "comparator": 100,
+        "investmentAmount": 5000,
+        "investmentScheme": {
+          "currentValue": 2013.82,
+          "folioNo": "477303218651",
+          "schemeCategory": 51,
+          "schemeHouse": 93,
+          "schemeId": 1001450,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeName": "Nippon India Money Market Fund (G)"
+        },
+        "investmentToScheme": {
+          "schemeCategory": 54,
+          "schemeHouse": 93,
+          "schemeId": 1000009,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeName": "Nippon India ELSS Tax Saver Fund (G)"
+        },
+        "investmentType": 164,
+        "ofScheme": {
+          "currentNav": 3858.3248,
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeMasterId": 1001348,
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "value": 3935.4912959999997,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerId": "-O-eXhI79t0-3mBVUnEl",
+      "triggerName": "Switch in Nippon",
+      "version": 1
+    },
+    "-O-ebTcoKv5IpIZ14eLA": {
+      "createdBy": 150,
+      "createdDate": 1718701909801,
+      "createdFrom": 71,
+      "customerId": 104062,
+      "status": 11,
+      "triggerData": {
+        "comparator": 101,
+        "investmentAmount": 5000,
+        "investmentScheme": {
+          "schemeCategory": 53,
+          "schemeHouse": 934,
+          "schemeId": 1006279,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/934.png",
+          "schemeName": "Parag Parikh Flexi Cap Fund (G)"
+        },
+        "investmentType": 161,
+        "ofScheme": {
+          "currentNav": 74.6598,
+          "schemeCategory": 53,
+          "schemeHouse": 934,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/934.png",
+          "schemeMasterId": 1006279,
+          "schemeName": "Parag Parikh Flexi Cap Fund (G)"
+        },
+        "value": 73.17,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerId": "-O-ebTcoKv5IpIZ14eLA",
+      "triggerName": "Invest One-Time in Parag",
+      "version": 1
+    },
+    "-O-ed9WFLFR5HtaR1FR5": {
+      "createdBy": 150,
+      "createdDate": 1718702351761,
+      "createdFrom": 71,
+      "customerId": 104062,
+      "status": 11,
+      "triggerData": {
+        "comparator": 100,
+        "investmentAmount": 5000,
+        "investmentScheme": {
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeId": 1001348,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "investmentType": 162,
+        "ofScheme": {
+          "currentNav": 3858.3248,
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeMasterId": 1001348,
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "value": 3935.49,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerId": "-O-ed9WFLFR5HtaR1FR5",
+      "triggerName": "Start SIP in Nippon",
+      "version": 1
+    },
+    "-O-edeYIXgd6wK664_6U": {
+      "createdBy": 150,
+      "createdDate": 1718702482964,
+      "createdFrom": 71,
+      "customerId": 104062,
+      "status": 11,
+      "triggerData": {
+        "comparator": 100,
+        "investmentAmount": 5000,
+        "investmentScheme": {
+          "currentValue": 7404.13,
+          "folioNo": "477303218662",
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeId": 1001348,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "investmentToScheme": {
+          "currentValue": 2013.82,
+          "folioNo": "477303218651",
+          "schemeCategory": 51,
+          "schemeHouse": 93,
+          "schemeId": 1001450,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeName": "Nippon India Money Market Fund (G)"
+        },
+        "investmentType": 165,
+        "ofScheme": {
+          "currentNav": 3858.3248,
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeMasterId": 1001348,
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "value": 3935.4912959999997,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerId": "-O-edeYIXgd6wK664_6U",
+      "triggerName": "Start STP in Nippon",
+      "version": 1
+    },
+    "-O-ediy94x5DgFPxsZWt": {
+      "createdBy": 150,
+      "createdDate": 1718702501067,
+      "createdFrom": 71,
+      "customerId": 104062,
+      "status": 11,
+      "triggerData": {
+        "comparator": 100,
+        "investmentAmount": 5000,
+        "investmentType": 160,
+        "ofScheme": {
+          "currentNav": 3858.3248,
+          "schemeCategory": 53,
+          "schemeHouse": 93,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeMasterId": 1001348,
+          "schemeName": "Nippon India Growth Fund (G)"
+        },
+        "value": 3935.49,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerId": "-O-ediy94x5DgFPxsZWt",
+      "triggerName": "Alert Only in Nippon",
+      "version": 1
+    }
+  }

@@ -212,7 +212,7 @@ class USD {
   double? marketCap;
   double? marketCapDominance;
   double? fullyDilutedMarketCap;
-  Null? tvl;
+  dynamic tvl;
   String? lastUpdated;
 
   USD(

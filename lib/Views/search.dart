@@ -25,7 +25,7 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
-    Get.off(SignUp());
+    Get.off(const SignUp());
   }
 
   late AnimationController _controller;
@@ -55,7 +55,7 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
                 onChanged: (query) {
                   coinSearch.searchCoins(query);
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Search Coins',
                     labelStyle: TextStyle(fontSize: 16),
                     prefixIcon: Icon(CupertinoIcons.search),
@@ -83,10 +83,10 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
             //   }
             // }),
 
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Obx(
-                    () => ListView.builder(
+                () => ListView.builder(
                   itemCount: coinSearch.searchResults.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
@@ -97,7 +97,7 @@ class _SearchState extends State<Search> with SingleTickerProviderStateMixin {
                         child: ListTile(
                           title: Text(
                             coin.name ?? '',
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                           subtitle: Column(

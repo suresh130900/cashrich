@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
         Get.snackbar("Sucess", "Login SucessFull",
             backgroundColor: Colors.white);
         if (userCredential != null) {
-          Get.off(Home());
+          Get.off(const Home());
         }
       } on FirebaseAuthException catch (ex) {
         Get.snackbar("Error", ex.code.toString());
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
       _auth
           .signInWithProvider(googleAuthProvider)
           .then((UserCredential userCredential) {
-        Get.offAll(Home());
+        Get.offAll(const Home());
       });
     } catch (error) {
       print(error);
@@ -96,7 +96,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   const Text(
@@ -106,7 +106,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -116,19 +116,19 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextField(
                     controller: emailController,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                         labelText: 'Enter Your email',
                         labelStyle: TextStyle(fontSize: 16),
                         prefixIcon: Icon(CupertinoIcons.mail),
                         border: OutlineInputBorder()),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -138,19 +138,19 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextField(
                     controller: passwordController,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                         labelText: 'Enter Your password',
                         labelStyle: TextStyle(fontSize: 16),
                         prefixIcon: Icon(CupertinoIcons.lock),
                         border: OutlineInputBorder()),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   SizedBox(
@@ -217,15 +217,15 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                   ),
                   CupertinoButton(
                     onPressed: () {
-                      Get.to(() => Login());
+                      Get.to(() => const Login());
                     },
-                    child: Text("Create an Account"),
+                    child: const Text("Create an Account"),
                   ),
-                  Divider(
+                  const Divider(
                     height: 10,
                     color: Colors.black,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -233,9 +233,9 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                       _handleGoogleSignIn();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white, // Background color
-                      onPrimary: Colors.black, // Text color
-                      padding: EdgeInsets.all(16.0),
+                      // primary: Colors.white, // Background color
+                      // onPrimary: Colors.black, // Text color
+                      padding: const EdgeInsets.all(16.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -247,8 +247,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           height: MediaQuery.of(context).size.height / 20,
                           width: MediaQuery.of(context).size.width / 4,
                         ),
-                        SizedBox(width: 16.0),
-                        Text(
+                        const SizedBox(width: 16.0),
+                        const Text(
                           'Sign In with Google',
                           style: TextStyle(fontSize: 18.0),
                         ),

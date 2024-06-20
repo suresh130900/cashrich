@@ -1,7 +1,7 @@
-
 import 'package:cash_rich/Services/coinData.dart';
 import 'package:cash_rich/Views/Auth/signup.dart';
 import 'package:cash_rich/Views/homeInner.dart';
+import 'package:cash_rich/Views/realtime_database.dart';
 import 'package:cash_rich/Views/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
-    Get.off(SignUp());
+    Get.off(const SignUp());
   }
 
   late AnimationController _controller;
@@ -37,6 +37,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(vsync: this);
     coins.getCoinData();
+    coins.getFirebaseRealtimeData();
   }
 
   @override
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             onPressed: () {
               logout();
             },
-            icon: Icon(Icons.login),
+            icon: const Icon(Icons.login),
           ),
         ],
         title: const Text(
@@ -105,11 +106,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
       body: IndexedStack(
         index: index,
-        children: [
+        children: const [
           HomeInner(),
           Center(
             child: Search(),
-          )
+          ),
+          RealtimeDatabase(),
         ],
       ),
       // body: SingleChildScrollView(

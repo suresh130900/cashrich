@@ -6,19 +6,19 @@ class Coing {
 
   Coing.fromJson(Map<String, dynamic> json) {
     status =
-        json['status'] != null ? new Status.fromJson(json['status']) : null;
+        json['status'] != null ? Status.fromJson(json['status']) : null;
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.status != null) {
-      data['status'] = this.status!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (status != null) {
+      data['status'] = status!.toJson();
     }
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
@@ -61,14 +61,14 @@ class Status {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['timestamp'] = this.timestamp;
-    data['error_code'] = this.errorCode;
-    data['error_message'] = this.errorMessage;
-    data['elapsed'] = this.elapsed;
-    data['credit_count'] = this.creditCount;
-    data['notice'] = this.notice;
-    data['total_count'] = this.totalCount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['timestamp'] = timestamp;
+    data['error_code'] = errorCode;
+    data['error_message'] = errorMessage;
+    data['elapsed'] = elapsed;
+    data['credit_count'] = creditCount;
+    data['notice'] = notice;
+    data['total_count'] = totalCount;
     return data;
   }
 }
@@ -131,31 +131,31 @@ class Data {
     selfReportedMarketCap = json['self_reported_market_cap'];
     tvlRatio = json['tvl_ratio'];
     lastUpdated = json['last_updated'];
-    quote = json['quote'] != null ? new Quote.fromJson(json['quote']) : null;
+    quote = json['quote'] != null ? Quote.fromJson(json['quote']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['symbol'] = this.symbol;
-    data['slug'] = this.slug;
-    data['num_market_pairs'] = this.numMarketPairs;
-    data['date_added'] = this.dateAdded;
-    data['tags'] = this.tags;
-    data['max_supply'] = this.maxSupply;
-    data['circulating_supply'] = this.circulatingSupply;
-    data['total_supply'] = this.totalSupply;
-    data['infinite_supply'] = this.infiniteSupply;
-    data['platform'] = this.platform;
-    data['cmc_rank'] = this.cmcRank;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['symbol'] = symbol;
+    data['slug'] = slug;
+    data['num_market_pairs'] = numMarketPairs;
+    data['date_added'] = dateAdded;
+    data['tags'] = tags;
+    data['max_supply'] = maxSupply;
+    data['circulating_supply'] = circulatingSupply;
+    data['total_supply'] = totalSupply;
+    data['infinite_supply'] = infiniteSupply;
+    data['platform'] = platform;
+    data['cmc_rank'] = cmcRank;
     data['self_reported_circulating_supply'] =
-        this.selfReportedCirculatingSupply;
-    data['self_reported_market_cap'] = this.selfReportedMarketCap;
-    data['tvl_ratio'] = this.tvlRatio;
-    data['last_updated'] = this.lastUpdated;
-    if (this.quote != null) {
-      data['quote'] = this.quote!.toJson();
+        selfReportedCirculatingSupply;
+    data['self_reported_market_cap'] = selfReportedMarketCap;
+    data['tvl_ratio'] = tvlRatio;
+    data['last_updated'] = lastUpdated;
+    if (quote != null) {
+      data['quote'] = quote!.toJson();
     }
     return data;
   }
@@ -172,13 +172,13 @@ class Quote {
   Quote({this.uSD});
 
   Quote.fromJson(Map<String, dynamic> json) {
-    uSD = json['USD'] != null ? new USD.fromJson(json['USD']) : null;
+    uSD = json['USD'] != null ? USD.fromJson(json['USD']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.uSD != null) {
-      data['USD'] = this.uSD!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (uSD != null) {
+      data['USD'] = uSD!.toJson();
     }
     return data;
   }
@@ -239,21 +239,21 @@ class USD {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['price'] = this.price;
-    data['volume_24h'] = this.volume24h;
-    data['volume_change_24h'] = this.volumeChange24h;
-    data['percent_change_1h'] = this.percentChange1h;
-    data['percent_change_24h'] = this.percentChange24h;
-    data['percent_change_7d'] = this.percentChange7d;
-    data['percent_change_30d'] = this.percentChange30d;
-    data['percent_change_60d'] = this.percentChange60d;
-    data['percent_change_90d'] = this.percentChange90d;
-    data['market_cap'] = this.marketCap;
-    data['market_cap_dominance'] = this.marketCapDominance;
-    data['fully_diluted_market_cap'] = this.fullyDilutedMarketCap;
-    data['tvl'] = this.tvl;
-    data['last_updated'] = this.lastUpdated;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['price'] = price;
+    data['volume_24h'] = volume24h;
+    data['volume_change_24h'] = volumeChange24h;
+    data['percent_change_1h'] = percentChange1h;
+    data['percent_change_24h'] = percentChange24h;
+    data['percent_change_7d'] = percentChange7d;
+    data['percent_change_30d'] = percentChange30d;
+    data['percent_change_60d'] = percentChange60d;
+    data['percent_change_90d'] = percentChange90d;
+    data['market_cap'] = marketCap;
+    data['market_cap_dominance'] = marketCapDominance;
+    data['fully_diluted_market_cap'] = fullyDilutedMarketCap;
+    data['tvl'] = tvl;
+    data['last_updated'] = lastUpdated;
     return data;
   }
 

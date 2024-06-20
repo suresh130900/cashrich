@@ -34,12 +34,12 @@ class _BoardingState extends State<Boarding>
             Center(
               child: Column(
                 children: [
-                  Text("Hello world"),
+                  const Text("Hello world"),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(() => Login());
+                      Get.to(() => const Login());
                     },
-                    child: Text("Submit"),
+                    child: const Text("Submit"),
                   ),
                 ],
               ),

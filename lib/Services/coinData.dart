@@ -1,29 +1,8 @@
-// import 'dart:convert';
-//
-// import 'package:cash_rich/Model/coins.dart';
-// import 'package:get/get.dart';
-// import 'package:http/http.dart' as http;
-//
-// class CoinData extends GetxController {
-//   Future<void> getCoinData() async {
-//     const apiEndpoint =
-//         "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
-//     final apiResponse = await http.get(Uri.parse(apiEndpoint),
-//         headers: {"X-CMC_PRO_API_KEY": "27ab17d1-215f-49e5-9ca4-afd48810c149"});
-//
-//     if (apiResponse.statusCode == 200) {
-//       print(apiResponse.body);
-//       List<Coing> allCoins = (jsonDecode(apiResponse.body)["data"] as List)
-//           .map((data) => Coing.fromJson(data))
-//           .toList();
-//       print(allCoins);
-//     }
-//   }
-// }
-
 import 'dart:convert';
 
 import 'package:cash_rich/Model/coins.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,33 +22,21 @@ class CoinData extends GetxController {
   RxString percentageChange = "".obs;
   RxList percentagesChanging = [].obs;
 
-
   Future<void> getCoinData() async {
-
     const apiEndpoint =
         "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
     final apiResponse = await http.get(Uri.parse(apiEndpoint),
         headers: {"X-CMC_PRO_API_KEY": "27ab17d1-215f-49e5-9ca4-afd48810c149"});
 
     if (apiResponse.statusCode == 200) {
-      //print(apiResponse.body);
-      // allCoin = (jsonDecode(apiResponse.body)["data"] as List)
-      //     .map((data) => Data.fromJson(data))
-      //     .toList();
       Coing coing = Coing.fromJson(jsonDecode(apiResponse.body));
-      //print(coing);
 
       finalCoins.value = [coing];
-      // print(coing.data);
 
-      //print(coing.data);
       crytpo.value = coing.data!;
-      print("----------------------------------------------------------------------------");
-      print(crytpo);
-      print("----------------------------------------------------------------------------");
+
       naming.value = crytpo.map((data) => data.name!).toList();
-      print("Priting all the names in a List");
-      print(naming);
+
       symboling.value = crytpo.map((data) => data.symbol!).toList();
       //print("symbol String: ${symbol.value}");
       maxSupply.value = crytpo.map((data) => data.maxSupply).join(', ');
@@ -85,40 +52,71 @@ class CoinData extends GetxController {
       //print("Prices String: ${prices.value}");
 
       pricing.value = crytpo.map((data) => data.quote!.uSD!.price!).toList();
-      print("Priting all the prices in a List");
-      print(pricing);
 
       percentageChange.value = crytpo
           .map((data) => data.quote?.uSD?.percentChange24h.toString() ?? 'N/A')
           .join(', ');
 
       //Percentage Changes:-
-      percentagesChanging.value = crytpo.map((data) => data.quote!.uSD!.percentChange24h!).toList();
-      print("Priting all the prices in a List");
-      print(percentagesChanging);
-      //print("Percentage String: ${percentageChange.value}");
-
-      // print("priting the length:-----------------------------------------------------------------------------");
-      // print(crytpo.value.length);
-      // print(crytpo.value);
-      // print("------------------------------------------------------------");
-      // print(crytpo.value);
-      // print("------------------------------------------------------------");
-      //
-      // for( var coin in crytpo)
-      //   {
-      //     //print("priting names:---------------------------");
-      //     //print(coin.name);
-      //     names.value = coin.name;
-      //   }
-      // print("priting names:---------------------------");
-      // print(names.value);
-      //print(finalCoins.value);
-
-      // for (var coin in allCoins) {
-      //   print("------------------------------------------------------------");
-      //   print(coin);
-      // }
+      percentagesChanging.value =
+          crytpo.map((data) => data.quote!.uSD!.percentChange24h!).toList();
     }
+  }
+
+  Future<void> getFirebaseRealtimeData() async {
+    final firebaseApp = Firebase.app();
+    final rtdb = FirebaseDatabase.instanceFor(
+        app: firebaseApp,
+        databaseURL:
+            'https://cashrich-26755-default-rtdb.asia-southeast1.firebasedatabase.app/');
+
+    final ref = rtdb.ref();
+
+    final snapshot = await ref.child('investmentTrigger').get();
+    print("Printing the value of snapshot: $snapshot ");
+    if (snapshot.exists) {
+      print(snapshot.value);
+    } else {
+      print('No data available.');
+    }
+  }
+
+  Future<void> createFirebaseData() async {
+    final firebaseApp = Firebase.app();
+    final rtdb = FirebaseDatabase.instanceFor(
+        app: firebaseApp,
+        databaseURL:
+            'https://cashrich-26755-default-rtdb.asia-southeast1.firebasedatabase.app/');
+    print(rtdb.databaseURL);
+    final ref = rtdb.ref("investmentTriggers");
+    await ref.set({
+      "createdBy": 283,
+      "createdDate": 1718702501067,
+      "createdFrom": 7122,
+      "customerId": 96313,
+      "status": 11,
+      "triggerData": {
+        "comparator": 100,
+        "investmentAmount": 50000000,
+        "investmentType": 23213,
+        "ofScheme": {
+          "currentNav": 3853948.3248,
+          "schemeCategory": 5323,
+          "schemeHouse": 93213,
+          "schemeLogoUrl": "https://cashrichapp.com/icon/fundhouse/93.png",
+          "schemeMasterId": 10013483232,
+          "schemeName": "Nippon India Growth Fund (G) by Suresh Chaudhary",
+        },
+        "value": 3935.49,
+        "valuePercentage": 2,
+        "valueType": 200
+      },
+      "triggerName": "Alert Only in Suresh DataBase",
+      "version": 1
+    }).then((_) {
+      print("Data Added SuccessFully");
+    }).catchError((_) {
+      print("Data Did not Add Successfully ");
+    });
   }
 }

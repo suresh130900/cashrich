@@ -1,6 +1,7 @@
 import 'package:cash_rich/Views/Auth/signup.dart';
 import 'package:cash_rich/Views/home.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,7 +41,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         Get.snackbar("Sucess", "User Registered Sucessfully",
             backgroundColor: Colors.white);
         if (userCredential.user != null) {
-          Get.off(Home());
+          Get.off(const Home());
           //Sip calculator
         }
       } on FirebaseAuthException catch (ex) {
@@ -57,10 +58,12 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       _auth
           .signInWithProvider(googleAuthProvider)
           .then((UserCredential userCredential) {
-        Get.offAll(Home());
+        Get.offAll(const Home());
       });
     } catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
     }
   }
 
@@ -108,7 +111,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   const Text(
@@ -118,7 +121,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -128,19 +131,19 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextField(
                     controller: emailController,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                         labelText: 'Enter Your email',
                         labelStyle: TextStyle(fontSize: 16),
                         prefixIcon: Icon(CupertinoIcons.mail),
                         border: OutlineInputBorder()),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -150,20 +153,20 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextField(
                     obscureText: true,
                     controller: passwordController,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                         labelText: 'Enter Your password',
                         labelStyle: TextStyle(fontSize: 16),
                         prefixIcon: Icon(CupertinoIcons.lock),
                         border: OutlineInputBorder()),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -173,20 +176,20 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextField(
                     obscureText: true,
                     controller: cPasswordController,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
+                    style: const TextStyle(color: Colors.black),
+                    decoration: const InputDecoration(
                         labelText: 'Please Confirm your password',
                         labelStyle: TextStyle(fontSize: 16),
                         prefixIcon: Icon(CupertinoIcons.lock),
                         border: OutlineInputBorder()),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   SizedBox(
@@ -253,15 +256,15 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   ),
                   CupertinoButton(
                     onPressed: () {
-                      Get.to(() => SignUp());
+                      Get.to(() => const SignUp());
                     },
-                    child: Text("Already have an Account"),
+                    child: const Text("Already have an Account"),
                   ),
-                  Divider(
+                  const Divider(
                     height: 10,
                     color: Colors.black,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -269,9 +272,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       _handleGoogleSignIn();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white, // Background color
-                      onPrimary: Colors.black, // Text color
-                      padding: EdgeInsets.all(16.0),
+                      // primary: Colors.white, // Background color
+                      // onPrimary: Colors.black, // Text color
+                      padding: const EdgeInsets.all(16.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -283,8 +286,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                           height: MediaQuery.of(context).size.height / 20,
                           width: MediaQuery.of(context).size.width / 4,
                         ),
-                        SizedBox(width: 16.0),
-                        Text(
+                        const SizedBox(width: 16.0),
+                        const Text(
                           'Sign In with Google',
                           style: TextStyle(fontSize: 18.0),
                         ),

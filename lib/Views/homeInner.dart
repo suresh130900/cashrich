@@ -1,4 +1,3 @@
-
 import 'package:cash_rich/Services/coinData.dart';
 import 'package:cash_rich/Services/coin_serach.dart';
 import 'package:cash_rich/Views/Auth/signup.dart';
@@ -24,7 +23,7 @@ class _HomeInnerState extends State<HomeInner>
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
-    Get.off(SignUp());
+    Get.off(const SignUp());
   }
 
   late AnimationController _controller;
@@ -48,7 +47,7 @@ class _HomeInnerState extends State<HomeInner>
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -58,7 +57,7 @@ class _HomeInnerState extends State<HomeInner>
                       coins.naming.length,
                       (index) => Card(
                         elevation: 4.0,
-                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        margin: const EdgeInsets.symmetric(vertical: 8.0),
                         child: ListTile(
                           title: Text(
                             coins.naming[index],
