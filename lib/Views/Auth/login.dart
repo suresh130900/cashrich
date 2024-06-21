@@ -40,6 +40,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
             .createUserWithEmailAndPassword(email: email, password: password);
         Get.snackbar("Sucess", "User Registered Sucessfully",
             backgroundColor: Colors.white);
+        print(userCredential.user);
         if (userCredential.user != null) {
           Get.off(const Home());
           //Sip calculator
@@ -196,18 +197,17 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.all(16.0)),
-                        shape: MaterialStateProperty.all<OutlinedBorder>(
+                        shape: WidgetStateProperty.all<OutlinedBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
-                        elevation: MaterialStateProperty.all<double>(5),
-                        backgroundColor:
-                            MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            return states.contains(MaterialState.pressed)
+                        elevation: WidgetStateProperty.all<double>(5),
+                        backgroundColor: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                            return states.contains(WidgetState.pressed)
                                 ? Theme.of(context)
                                     .primaryColor
                                     .withOpacity(0.5)
@@ -216,10 +216,10 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                           },
                         ),
                         foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        overlayColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                            return states.contains(MaterialState.pressed)
+                            WidgetStateProperty.all<Color>(Colors.white),
+                        overlayColor: WidgetStateProperty.resolveWith<Color>(
+                          (Set<WidgetState> states) {
+                            return states.contains(WidgetState.pressed)
                                 ? Theme.of(context)
                                     .primaryColor
                                     .withOpacity(0.5)

@@ -35,7 +35,9 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
         Get.snackbar("Sucess", "Login SucessFull",
             backgroundColor: Colors.white);
         if (userCredential != null) {
-          Get.off(const Home());
+          print("printing the user Details");
+          print(userCredential.user!.uid);
+          //Get.off(const Home());
         }
       } on FirebaseAuthException catch (ex) {
         Get.snackbar("Error", ex.code.toString());
